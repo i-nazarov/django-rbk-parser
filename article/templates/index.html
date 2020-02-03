@@ -1,0 +1,21 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div>
+  <h1>RBC top news</h1>
+  <form action= "{% url 'index' %}" method="get">
+    <input type="hidden" value="{{ token }}" name="token"/>
+    <input type="submit" value="Получить новости" name="get_news"/>
+  </form>
+</div>
+  {% for news in all_news %}
+    <div class="layer">
+      <h2>{{ news.headline }}</h2>
+      <p>{{ news.text|slice:":300" }} ...</p>
+      <form action= "{% url 'news-detail' news.id %}" method="get">
+        <input type="hidden" value="{{ token }}" name="token"/>
+        <input type="submit" value="подробнее" name="more"/>
+      </form>
+    </div>
+  {% endfor %}
+{% endblock %}
