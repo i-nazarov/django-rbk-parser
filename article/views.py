@@ -45,7 +45,7 @@ def index(request):
             token = attrs['token']
             if 'get_news' in attrs:
                 fill_db()
-                response = render(request, 'index.html', context={'all_news': all_news, 'token': token})
+            response = render(request, 'index.html', context={'all_news': all_news, 'token': token})
         else:
             response = HttpResponse("401 Unauthorized")
             response.status_code = 401
